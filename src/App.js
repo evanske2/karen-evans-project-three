@@ -1,5 +1,8 @@
 // components
+import PageHeader from './PageHeader.js';
+// import SearchHero from './SearchHero.js';
 import PageFooter from './PageFooter.js';
+
 import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -12,9 +15,6 @@ import axios from 'axios';
 
 function App() {
 
-  const apiKey = '001ac6c73378bbfff488a36141458af2';
-  const timestamp = 'thesoer';
-  const hash = '72e5ed53d1398abb831c3ceec263f18b';
 
   const [characters, setCharacters] = useState([]);
   const [userInput, setUserInput] = useState('');
@@ -22,48 +22,55 @@ function App() {
   
 
   // make an api call to the characters endpoint
-  useEffect(() => {
+  const getHeroes = () => {
+    
+    const publicKey = '001ac6c73378bbfff488a36141458af2';
+    // const publicKey = '3caa8115daadc97fca10679f08930906';
+    // const privateKey = '981396c0102fd34b43e343b8aeb6fc5ec231572b';
+    const timestamp = 'thesoer';
+    const hash = '72e5ed53d1398abb831c3ceec263f18b';
+
+
     axios({
       url: 'https://gateway.marvel.com:443/v1/public/characters',
       method: 'GET',
       dataResponse: 'json',
       params: {
+        name: searchCharacter,
         ts: timestamp,
         hash: hash,
-        name: searchCharacter,
-        apikey: apiKey,
+        apikey: publicKey,
         limit: 5,
       }
-    }).then( (response) => {
+    }).then((response) => {
       console.log(response.data.data.results);
       setCharacters(response.data.data.results);
     })
-    // passing the users input into state
-  }, [searchCharacter]);
-
-  // variable for the comics endpoint data
-  // const [comics, setComics] = useState('');
-
-  // make an api call to the comics endpoint?
-
-
-
-  const handleInput = (event) => {
-    // console.log(event.target.value); verify the search field is active
-    setUserInput(event.target.value);
   }
 
+  
+  useEffect(() => {
+  // passing the users input into state
+    getHeroes();        
+  }, [searchCharacter]);
 
+
+// get the users input from the search field
+  const handleInput = (event) => {
+    setUserInput(event.target.value);
+  }
+  
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    // console.log('is the form working?');
     setSearchCharacter(userInput);
+    setUserInput('');
   }
 
 
   return (
     <div className="App">
-      <h1>Choose a character</h1>
+      
+      <PageHeader />
 
       <form onSubmit={handleFormSubmit}>
         <label htmlFor="search">Search for a character: </label>
@@ -71,26 +78,34 @@ function App() {
         <button>Search</button>
       </form>
 
+
       {characters.map( (hero) => {
+
+        const characterID = hero.id
+        
         return (
+          
           <div key={hero.id}>
+            
             <div className="hero-image">
               <img src={hero.thumbnail.path + '.' + hero.thumbnail.extension} alt={hero.name} /></div>
+            
             <div className="hero-details">
               <h2>{hero.name}</h2>
               <p>{hero.description}</p>
             </div>
+            
             <div>
-              {characters.map((hero) => {
-                // want to map through comic appearances
-              })}
+              {console.log(characterID)}
+              {/* want to display comic appearances here */}             
             </div>
+
           </div>
         )
       })}
       
-      <PageFooter />
-      
+      {/* <PageFooter /> */}
+
     </div>
   );
 }
