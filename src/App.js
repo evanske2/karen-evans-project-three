@@ -1,6 +1,7 @@
 // components
 import PageHeader from './PageHeader.js';
 // import SearchHero from './SearchHero.js';
+import HeroData from './components/HeroData.js';
 import PageFooter from './PageFooter.js';
 
 import './App.css';
@@ -13,22 +14,30 @@ import axios from 'axios';
 // private key:
 // 981396c0102fd34b43e343b8aeb6fc5ec231572b
 
+const myArray = ['hero1', 'hero2', 'hero3'];
+
+const thor1 = myArray[0];
+const [thor2, thor3, thor4] = myArray;
+console.log(myArray, thor1, thor2, thor3, thor4);
+
 function App() {
 
 
   const [characters, setCharacters] = useState([]);
   const [userInput, setUserInput] = useState('');
-  const [searchCharacter, setSearchCharacter] = useState('');
+  // const [searchCharacter, setSearchCharacter] = useState('');
+  // const [hero, setHero] = useState({});
+  const [comics, setComics] = useState([]);
   
 
   // make an api call to the characters endpoint
-  const getHeroes = () => {
+  const getHeroes = (searchCharacter) => {
     
-    const publicKey = '001ac6c73378bbfff488a36141458af2';
-    // const publicKey = '3caa8115daadc97fca10679f08930906';
+    // from my developer account
+    const publicKey = '3caa8115daadc97fca10679f08930906';
     // const privateKey = '981396c0102fd34b43e343b8aeb6fc5ec231572b';
-    const timestamp = 'thesoer';
-    const hash = '72e5ed53d1398abb831c3ceec263f18b';
+    const timestamp = 1;
+    const hash = '56557615138ce2d8e64c231bb086c14f';
 
 
     axios({
@@ -43,16 +52,45 @@ function App() {
         limit: 5,
       }
     }).then((response) => {
-      console.log(response.data.data.results);
+      console.log(response.data.data.results[0].id);
       setCharacters(response.data.data.results);
+      getComics(response.data.data.results[0].id);
+      // setComicsByCharacter(response.data.data.results[0].id);
+    })
+  }
+
+
+  // make an api call to the comics endpoint
+  const getComics = (characterID) => {
+
+    // from my developer account
+    const publicKey = '3caa8115daadc97fca10679f08930906';
+    const timestamp = 1;
+    const hash = '56557615138ce2d8e64c231bb086c14f';
+
+
+    axios({
+      url: `https://gateway.marvel.com:443/v1/public/characters/${characterID}/comics`,
+      method: 'GET',
+      dataResponse: 'json',
+      params: {
+        // name: searchCharacter,
+        ts: timestamp,
+        hash: hash,
+        apikey: publicKey,
+        limit: 5,
+      }
+    }).then((response) => {
+      console.log(response.data.data.results);
+      setComics(response.data.data.results);
     })
   }
 
   
-  useEffect(() => {
-  // passing the users input into state
-    getHeroes();        
-  }, [searchCharacter]);
+  // useEffect(() => {
+  // // passing the users input into state
+  //   getHeroes();        
+  // }, [searchCharacter]);
 
 
 // get the users input from the search field
@@ -62,9 +100,13 @@ function App() {
   
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    setSearchCharacter(userInput);
+    getHeroes(userInput);
+    // setSearchCharacter(userInput);
     setUserInput('');
   }
+
+  const [hero] = characters;
+  console.log(characters, hero);
 
 
   return (
@@ -78,35 +120,13 @@ function App() {
         <button>Search</button>
       </form>
 
-
-      {characters.map( (hero) => {
-
-        const characterID = hero.id
-        
-        return (
-          
-          <div key={hero.id}>
-            
-            <div className="hero-image">
-              <img src={hero.thumbnail.path + '.' + hero.thumbnail.extension} alt={hero.name} /></div>
-            
-            <div className="hero-details">
-              <h2>{hero.name}</h2>
-              <p>{hero.description}</p>
-            </div>
-            
-            <div>
-              {console.log(characterID)}
-              {/* want to display comic appearances here */}             
-            </div>
-
-          </div>
-        )
-      })}
+    { hero &&   
+      <HeroData hero={hero} comics={comics} />
+    }
       
-      {/* <PageFooter /> */}
-
     </div>
+
+      
   );
 }
 
