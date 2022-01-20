@@ -88,18 +88,18 @@ function App() {
       <div className='search-field'>
         <form onSubmit={handleFormSubmit}>
           <label htmlFor="search">Search for a character: </label>
-          <input type="text" id="search" onChange={handleInput} value={userInput} />
+          <input type="text" id="search" onChange={handleInput} value={userInput} placeholder="Try 'Rocket Raccoon'"/>
           <button>Search</button>
         </form>
       </div>
 
     <main>
       {
-      hero === undefined ?
+      hero ?
       (
+        <HeroData hero={hero} comics={comics} />
+        ) : (
         <Errors />
-      ) : (
-          <HeroData hero={hero} comics={comics} />
         )
       }
     </main>

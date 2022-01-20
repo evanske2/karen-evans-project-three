@@ -57,8 +57,10 @@ h1 {
 }
 
 h2 {
-  @include font-details(3.5rem, 0.5, 4px, 700);
+  @include font-details(3.5rem, 0.8, 4px, 700);
   background-color: $comic-book-page;
+  width: fit-content;
+  margin: 20px 0;
 }
 
 h3 {
@@ -81,7 +83,7 @@ p {
     0 0 0 13px $ink-black;
   background: lighten($comic-book-page, 4);
   padding: 20px;
-  width: 80%;
+  width: 90%;
   max-width: 800px;
   margin: auto;
   margin-top: -30px;
@@ -99,11 +101,15 @@ label {
 }
 
 input {
-  font-family: $sans-serif-font;
-  @include font-details(0.9rem, -height, 2px, 700);
+  font-family: $comic-book-font;
+  @include font-details(1.5rem, -height, 2px, 700);
   color: $marvel-red;
   max-width: 300px;
   margin: 0 10px;
+
+    &::placeholder {
+      color: #a09f9f;
+    }
 }
 
 button {
@@ -132,7 +138,7 @@ main {
   flex-direction: row;
   justify-content: center;
   align-items: flex-start; 
-  padding: 50px 0; 
+  padding: 50px 30px; 
 }
 
 .hero-image {
@@ -145,7 +151,11 @@ main {
 
 .hero-details {
   width: 65%;
-  padding: 0 0 0 40px;
+  padding: 40px 0 0 40px;
+
+    p {
+      line-height: 2;
+    }
 }
 
 .hero-image img {
@@ -170,3 +180,4 @@ main {
   height: 100%;
 }
 
+@import "media-queries";

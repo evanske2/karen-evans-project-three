@@ -26,7 +26,7 @@ https://codepen.io/AbubakerSaeed/pen/EJrRvY */
 
 /* hover and focus-within states */
 .flip-card-container:hover .flip-card,
-.flip-card-container:focus-within .flip-card {
+.flip-card-container:focus .flip-card {
   transform: rotateY(180deg);
 }
 
@@ -58,6 +58,7 @@ https://codepen.io/AbubakerSaeed/pen/EJrRvY */
   transform: rotateY(180deg);
   z-index: 1;
   flex-direction: column;
+  text-align: center;
 
     p {
       font-size: 0.7rem;

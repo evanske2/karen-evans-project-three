@@ -7,7 +7,7 @@ const HeroData = (props) => {
   return (
     <div key={hero.id}>
 
-      <div className="hero-result wrapper">
+      <section className="hero-result wrapper">
         <div className="hero-image">
           <img src={hero.thumbnail.path + '.' + hero.thumbnail.extension} alt={hero.name} />
         </div>
@@ -15,9 +15,9 @@ const HeroData = (props) => {
           <h2>{hero.name}</h2>
           <p>{hero.description}</p>
         </div>
-      </div>
+      </section>
 
-      <div className="comics-list wrapper">
+      <section className="comics-list wrapper">
           {comics.map( (comic) => {
             return (
               <div className="flip-card-container" key={comic.id}>
@@ -38,7 +38,7 @@ const HeroData = (props) => {
               </div>
             )
           })}
-        </div>
+      </section>
 
     </div>
   )
