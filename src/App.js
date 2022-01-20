@@ -5,7 +5,7 @@ import Errors from './components/Errors.js';
 import PageFooter from './components/PageFooter.js';
 
 // modules
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 // styling
@@ -17,7 +17,6 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [comics, setComics] = useState([]);
-  const [errorHandling, setErrorHandling] = useState('')
   
   // from my developer account
   const publicKey = '3caa8115daadc97fca10679f08930906';
