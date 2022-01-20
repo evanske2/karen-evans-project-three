@@ -332,7 +332,7 @@ footer span {
 }
 .error-message p {
   text-align: center;
-  padding: 20px;
+  padding: 8px 20px;
 }
 .error-message::before, .error-message::after {
   content: "";
@@ -579,7 +579,7 @@ button {
   letter-spacing: 1px;
   font-weight: 700;
   border: none;
-  padding: 4px 8px;
+  padding: 6px 10px;
   text-transform: uppercase;
 }
 button:hover, button:focus {
