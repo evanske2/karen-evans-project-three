@@ -42,6 +42,7 @@ function App() {
     }).then( (response) => {
       setCharacters(response.data.data.results);
       getComics(response.data.data.results[0].id);
+      setIfError(false);
     }).catch( (error) => {
       // console.log(error);
       if (error) {
