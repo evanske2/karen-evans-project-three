@@ -1,10 +1,70 @@
+$comic-book-page: #f4ece1;
+$ink-black: #201e1e;
+$marvel-red: #ED1D24;
+
+.error-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .error-message {
   max-width: 500px;
   width: 80%;
-  margin: auto;
 
     p {
       text-align: center;
-      padding: 20px;
+      padding: 8px 20px;
+    }
+
+/* speech bubble customized from 
+https://codepen.io/kaisermann/pen/xZWVrG?editors=1100 */
+
+  position: relative;
+  display: inline-block;
+  margin: 10px auto 29px auto;
+  text-align: center;
+  font-weight: 700;
+  background-color: #fff;
+  color: $ink-black;
+  padding: 5px;
+  box-shadow: 0 -3px #fff, 0 -6px $marvel-red, 3px 0 #fff, 3px -3px $marvel-red, 6px 0 $marvel-red, 0 3px #fff, 0 6px $marvel-red, -3px 0 #fff, -3px 3px $marvel-red, -6px 0 $marvel-red, -3px -3px $marvel-red, 3px 3px $marvel-red, 3px 9px $ink-black, 6px 6px $ink-black, 9px 3px $ink-black;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+      left: 20%;
+    }
+
+    &::before {
+      left: auto;
+      right: 20%;
+      top: -11px;
+      bottom: auto;
+      width: 15px;
+      height: 8px;
+      background: #fff;
+      bottom: -11px;
+      border-left: 3px solid $marvel-red;
+      border-right: 3px solid $marvel-red;
+    }
+
+    &::after {
+      box-shadow: 3px 0 $marvel-red, -3px 0 $marvel-red, -3px -3px #fff, 0px -3px $marvel-red, -6px -3px $marvel-red, -3px -6px $marvel-red, -6px -6px $marvel-red;
+      margin-left: 0;
+      margin-right: 6px;
+      left: auto;
+      right: 20%;
+      top: -14px;
+      bottom: auto;
+      background: #fff;
+      width: 9px;
+      height: 3px;
     }
 }

@@ -5,7 +5,7 @@ import Errors from './components/Errors.js';
 import PageFooter from './components/PageFooter.js';
 
 // modules
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 // styling
@@ -17,8 +17,8 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [comics, setComics] = useState([]);
-  const [errorHandling, setErrorHandling] = useState('')
-  
+  const [ifError, setIfError] = useState(false);
+    
   // from my developer account
   const publicKey = '3caa8115daadc97fca10679f08930906';
   // const privateKey = '981396c0102fd34b43e343b8aeb6fc5ec231572b';
@@ -39,16 +39,18 @@ function App() {
         apikey: publicKey,
         limit: 5,
       }
-    }).then((response) => {
+    }).then( (response) => {
       setCharacters(response.data.data.results);
       getComics(response.data.data.results[0].id);
-    }).catch((error) => {
-      console.log(error);
-      console.log('nothing found');
+    }).catch( (error) => {
+      // console.log(error);
+      if (error) {
+        setIfError(true);
+      } 
     })
   }
 
-  // make an api call to the comics endpoint
+  // make a second call to the comics endpoint passing the character ID
   const getComics = (characterID) => {
 
     axios({
@@ -62,7 +64,6 @@ function App() {
         // limit: 5,
       }
     }).then((response) => {
-      // console.log(response.data.data.results);
       setComics(response.data.data.results);
     })
   }
@@ -85,25 +86,32 @@ function App() {
       
       <PageHeader />
 
-      <div className='search-field'>
+      <section className='search-field'>
         <form onSubmit={handleFormSubmit}>
           <label htmlFor="search">Search for a character: </label>
           <input type="text" id="search" onChange={handleInput} value={userInput} placeholder="Try 'Rocket Raccoon'"/>
           <button>Search</button>
         </form>
-      </div>
+      </section>
 
     <main>
       {
-      hero ?
-      (
-        <HeroData hero={hero} comics={comics} />
-        ) : (
-        <Errors />
-        )
+        hero ?
+          (
+            <HeroData hero={hero} comics={comics} />
+          ) : (
+              null
+          )
+      }
+      {
+        ifError ?
+          (
+            <Errors />
+          ) : (
+            null
+          )
       }
     </main>
-      {console.log(hero)}
 
     <PageFooter />
       

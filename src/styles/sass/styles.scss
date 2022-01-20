@@ -118,7 +118,7 @@ button {
   font-family: $sans-serif-font;
   @include font-details(1rem, -height, 1px, 700);
   border: none;
-  padding: 4px 8px;
+  padding: 6px 10px;
   text-transform: uppercase;
 
     &:hover,

@@ -32,7 +32,7 @@ const HeroData = (props) => {
                     <p>{'Issue # ' + comic.issueNumber}</p>
                     <p>{comic.pageCount + ' pages'}</p>
                     <p>{'Released ' + new Date(comic.dates[0].date).toLocaleDateString()}</p>
-                    <p>{'Price' + ' $' + comic.prices[0].price}</p>
+                    <p>{`Price $${comic.prices[0].price}`}</p>
                   </div>
                 </div>
               </div>
