@@ -246,7 +246,7 @@ header, footer {
 }
 
 header {
-  height: 70vh;
+  height: 60vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -298,14 +298,76 @@ footer span {
   color: #0b0a0a;
 }
 
+.error-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .error-message {
   max-width: 500px;
   width: 80%;
-  margin: auto;
+  /* speech bubble customized from 
+  https://codepen.io/kaisermann/pen/xZWVrG?editors=1100 */
+  position: relative;
+  display: inline-block;
+  margin: 10px auto 29px auto;
+  text-align: center;
+  font-weight: 700;
+  background-color: #fff;
+  color: #201e1e;
+  padding: 5px;
+  -webkit-box-shadow: 0 -3px #fff, 0 -6px #ED1D24, 3px 0 #fff, 3px -3px #ED1D24, 6px 0 #ED1D24, 0 3px #fff, 0 6px #ED1D24, -3px 0 #fff, -3px 3px #ED1D24, -6px 0 #ED1D24, -3px -3px #ED1D24, 3px 3px #ED1D24, 3px 9px #201e1e, 6px 6px #201e1e, 9px 3px #201e1e;
+          box-shadow: 0 -3px #fff, 0 -6px #ED1D24, 3px 0 #fff, 3px -3px #ED1D24, 6px 0 #ED1D24, 0 3px #fff, 0 6px #ED1D24, -3px 0 #fff, -3px 3px #ED1D24, -6px 0 #ED1D24, -3px -3px #ED1D24, 3px 3px #ED1D24, 3px 9px #201e1e, 6px 6px #201e1e, 9px 3px #201e1e;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .error-message p {
   text-align: center;
   padding: 20px;
+}
+.error-message::before, .error-message::after {
+  content: "";
+  display: block;
+  position: absolute;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  left: 20%;
+}
+.error-message::before {
+  left: auto;
+  right: 20%;
+  top: -11px;
+  bottom: auto;
+  width: 15px;
+  height: 8px;
+  background: #fff;
+  bottom: -11px;
+  border-left: 3px solid #ED1D24;
+  border-right: 3px solid #ED1D24;
+}
+.error-message::after {
+  -webkit-box-shadow: 3px 0 #ED1D24, -3px 0 #ED1D24, -3px -3px #fff, 0px -3px #ED1D24, -6px -3px #ED1D24, -3px -6px #ED1D24, -6px -6px #ED1D24;
+          box-shadow: 3px 0 #ED1D24, -3px 0 #ED1D24, -3px -3px #fff, 0px -3px #ED1D24, -6px -3px #ED1D24, -3px -6px #ED1D24, -6px -6px #ED1D24;
+  margin-left: 0;
+  margin-right: 6px;
+  left: auto;
+  right: 20%;
+  top: -14px;
+  bottom: auto;
+  background: #fff;
+  width: 9px;
+  height: 3px;
 }
 
 /* flip cards animation customized from original 
