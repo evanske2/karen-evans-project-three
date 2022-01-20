@@ -1,6 +1,7 @@
 // components
 import PageHeader from './components/PageHeader.js';
 import HeroData from './components/HeroData.js';
+import Errors from './components/Errors.js';
 import PageFooter from './components/PageFooter.js';
 
 // modules
@@ -8,7 +9,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 // styling
-import './App.css';
+import './styles/styles.css';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [comics, setComics] = useState([]);
+  const [errorHandling, setErrorHandling] = useState('')
   
   // from my developer account
   const publicKey = '3caa8115daadc97fca10679f08930906';
@@ -40,6 +42,9 @@ function App() {
     }).then((response) => {
       setCharacters(response.data.data.results);
       getComics(response.data.data.results[0].id);
+    }).catch((error) => {
+      console.log(error);
+      console.log('nothing found');
     })
   }
 
@@ -57,7 +62,7 @@ function App() {
         // limit: 5,
       }
     }).then((response) => {
-      console.log(response.data.data.results);
+      // console.log(response.data.data.results);
       setComics(response.data.data.results);
     })
   }
@@ -80,15 +85,25 @@ function App() {
       
       <PageHeader />
 
-      <form onSubmit={handleFormSubmit}>
-        <label htmlFor="search">Search for a character: </label>
-        <input type="text" id="search" onChange={handleInput} value={userInput} />
-        <button>Search</button>
-      </form>
+      <div className='search-field'>
+        <form onSubmit={handleFormSubmit}>
+          <label htmlFor="search">Search for a character: </label>
+          <input type="text" id="search" onChange={handleInput} value={userInput} />
+          <button>Search</button>
+        </form>
+      </div>
 
-    { hero &&   
-      <HeroData hero={hero} comics={comics} />
-    }
+    <main>
+      {
+      hero === undefined ?
+      (
+        <Errors />
+      ) : (
+          <HeroData hero={hero} comics={comics} />
+        )
+      }
+    </main>
+      {console.log(hero)}
 
     <PageFooter />
       

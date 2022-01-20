@@ -1,0 +1,172 @@
+@import "setup";
+@import "header-footer";
+@import "error-message";
+@import "flip-cards";
+
+
+html {
+  font-size: 125%; /* 16px * 1.25 = 20px */
+}
+
+body {
+  background: lighten($comic-book-page, 4);
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+// colors -----------------------------------------------
+
+$comic-book-page: #f4ece1;
+$ink-black: #201e1e;
+$marvel-red: #ED1D24;
+
+// fonts -----------------------------------------------
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;700&display=swap');
+
+$comic-book-font: 'Bangers', sans-serif;
+$sans-serif-font: 'Poppins', sans-serif;
+
+@mixin font-details($font-size, $line-height, $letter-spacing, $font-weight) {
+  font-size: $font-size;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;  
+  font-weight: $font-weight;   
+}
+
+// fonts -----------------------------------------------
+
+h1, 
+h2 {
+  font-family: $comic-book-font;
+}
+
+h1, 
+h2, 
+h3,
+p {
+  color: $ink-black;
+}
+
+h1 {
+  @include font-details(2.25rem, 1, 3px, 700);
+}
+
+h2 {
+  @include font-details(3.5rem, 0.5, 4px, 700);
+  background-color: $comic-book-page;
+}
+
+h3 {
+  font-family: $sans-serif-font;
+  @include font-details(0.8rem, 1, 1px, 700);
+  text-align: center;
+}
+
+p {
+  font-family: $sans-serif-font;
+  @include font-details(0.8rem, -height, -spacing, 400);
+}
+
+// form fields -----------------------------------------------
+
+.search-field {
+  box-shadow:
+    0 0 0 3px $ink-black,
+    0 0 0 10px $comic-book-page,
+    0 0 0 13px $ink-black;
+  background: lighten($comic-book-page, 4);
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
+  margin-top: -30px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  font-family: $sans-serif-font;
+  @include font-details(0.9rem, -height, 1px, 700);
+}
+
+input {
+  font-family: $sans-serif-font;
+  @include font-details(0.9rem, -height, 2px, 700);
+  color: $marvel-red;
+  max-width: 300px;
+  margin: 0 10px;
+}
+
+button {
+  background-color: $marvel-red;
+  color: white;
+  font-family: $sans-serif-font;
+  @include font-details(1rem, -height, 1px, 700);
+  border: none;
+  padding: 4px 8px;
+  text-transform: uppercase;
+
+    &:hover,
+    &:focus {
+      background-color: darken($marvel-red, 10);
+    }
+}
+
+// hero results -----------------------------------------------
+
+main {
+  padding: 50px 0;
+}
+
+.hero-result {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start; 
+  padding: 50px 0; 
+}
+
+.hero-image {
+  width: 35%;
+  box-shadow:
+    0 0 0 3px $ink-black,
+    0 0 0 10px $comic-book-page,
+    0 0 0 13px $ink-black;
+}
+
+.hero-details {
+  width: 65%;
+  padding: 0 0 0 40px;
+}
+
+.hero-image img {
+  width: 100%;
+  display: block;
+}
+
+// comic book results -----------------------------------------------
+
+.comics-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.comic-details p {
+  padding: 0 20px;
+}
+
+.comic-image img {
+  width: 100%;
+  height: 100%;
+}
+

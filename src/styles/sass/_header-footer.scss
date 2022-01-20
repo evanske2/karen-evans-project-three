@@ -1,0 +1,64 @@
+$comic-book-page: #f4ece1;
+$ink-black: #201e1e;
+$marvel-red: #ED1D24;
+
+$comic-book-font: 'Bangers', sans-serif;
+$sans-serif-font: 'Poppins', sans-serif;
+
+header, footer {
+  text-align: center;
+}
+
+header {
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/src/assets/marvel-hero-banner.jpg');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  padding: 0 20%;
+}
+
+.hero-banner {
+  box-shadow:
+    0 0 0 3px $ink-black,
+    0 0 0 10px $comic-book-page,
+    0 0 0 13px $ink-black;
+  background: rgba($comic-book-page, .7);
+  padding: 10px 30px 25px 30px;
+  max-width: 620px;
+
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+}
+
+footer {
+  background: $ink-black;
+  padding: 20px 0;
+  
+    p,
+    a {
+      color: white;
+    }
+
+    a {
+      font-weight: 700;
+      text-decoration: none;
+
+        &:hover,
+        &:focus {
+          color: $marvel-red;
+        }
+    }
+
+    span {
+      font-family: $comic-book-font;
+      font-size: 3rem;
+      letter-spacing: 4px;
+      color: darken($ink-black, 8);
+    }
+}

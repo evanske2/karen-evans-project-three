@@ -1,66 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+$comic-book-page: #f4ece1;
+$ink-black: #201e1e;
+$marvel-red: #ED1D24;
 
 
-
-h1, h2, h3 {
-  font-family: 'Bangers', sana-serif;
-}
-
-.wrapper {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.hero-result {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center; 
-  padding: 50px 0; 
-}
-
-.hero-image {
-  width: 35%;
-  box-shadow:
-    0 0 0 3px black,
-    0 0 0 10px #f4ece1,
-    0 0 0 13px black;
-}
-
-.hero-details {
-  width: 65%;
-  padding: 0 0 0 40px;
-}
-
-.hero-image img {
-  width: 100%;
-  display: block;
-}
-
-.comics-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.comic-details p {
-  padding: 0 20px;
-}
-
-.comic-image img {
-  width: 100%;
-  height: 100%;
-}
-
-/* flip cards started with https://codepen.io/AbubakerSaeed/pen/EJrRvY */
+/* flip cards animation customized from original 
+https://codepen.io/AbubakerSaeed/pen/EJrRvY */
 
 /* .flip-card-container */
 .flip-card-container {
-  --card-back: papayawhip;
+  --card-back: #201e1e;
   width: 210px;
   height: 325px;
-  margin: 20px;
+  margin: 15px;
   perspective: 1000px;
 }
 
@@ -107,4 +58,13 @@ h1, h2, h3 {
   transform: rotateY(180deg);
   z-index: 1;
   flex-direction: column;
+
+    p {
+      font-size: 0.7rem;
+      color: white;
+    }
+
+    h3 {
+      color: white;
+    }
 }
