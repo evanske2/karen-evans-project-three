@@ -258,7 +258,7 @@ header {
           justify-content: center;
   background-image: url("/src/assets/marvel-hero-banner.jpg");
   background-repeat: no-repeat;
-  background-position: top;
+  background-position: bottom;
   background-size: cover;
 }
 
@@ -646,7 +646,6 @@ main {
   height: 100%;
 }
 
-/* Desktops */
 /* Small desktops */
 @media (max-width: 1080px) {
   .hero-details {
@@ -700,6 +699,10 @@ main {
 }
 /* Landscape phones and down */
 @media (max-width: 560px) {
+  header {
+    height: 80vh;
+  }
+
   .flip-card-container {
     width: 180px;
     height: 275px;
